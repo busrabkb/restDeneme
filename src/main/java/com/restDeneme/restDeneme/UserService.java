@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService  {
@@ -13,29 +14,34 @@ public class UserService  {
 
     @Autowired
     UserRepository userRepository;
-    static {
-        dbUser u1=new dbUser( "user1");
-        dbUser u2=new dbUser( "user2");
-        dbUser u3=new dbUser( "user3");
 
-        userList.add(u1);
-        userList.add(u2);
-        userList.add(u3);
-    }
 public void save(dbUser newUser ){
 userRepository.save(newUser);
- userList.add(newUser);
 
 }
-public dbUser getUserFindById(int id){
-  //  User user:userRepository.(id)
+public dbUser getUserFindById(Long id){
+    // dbUser user: userList
 
-    for (dbUser user: userList
-         ) {
-       if (  user.getId()==id)
-           return  user;
+    Optional<dbUser> user=   userRepository. findById(id);
 
-    }
-    return null;
+    if (user.get().getId() != id)
+        throw new userNotFoundException("id: " + user.get().getId());
+
+    else return user.get();
+}
+
+
+    public    List<dbUser> getUserFindByName (String name){
+        // dbUser user: userList
+
+        List<dbUser> user=   userRepository. findByDbUsername(name);
+
+      //  if (user.get().getId() == id)
+        //    throw new userNotFoundException("id: " + user.get().getId());
+
+        //else
+        return user;
+
+
 }
 }

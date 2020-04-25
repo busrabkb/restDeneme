@@ -15,8 +15,8 @@ public class userController {
 UserService userService;
 
 
-    @RequestMapping(method= RequestMethod.GET, path="/getUser/{id}")
-public void getUserfromName(@PathVariable int id){
+    @RequestMapping(method= RequestMethod.GET, path="/getUserId/{id}")
+public void getUserfromId(@PathVariable Long id){
 
 userService.getUserFindById(id);
 
@@ -28,5 +28,14 @@ userService.getUserFindById(id);
         dbUser user=new dbUser(name);
                 userService.save(user);
 }
+
+    @RequestMapping(method= RequestMethod.GET, path="/getUserName/{namee}")
+    public void getUserfromName(@PathVariable String namee){
+
+        userService. getUserFindByName(namee);
+
+
+    }
+
 
 }

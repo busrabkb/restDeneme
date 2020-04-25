@@ -13,10 +13,14 @@ public class dbUser implements Serializable {
      private long id;
 
 
-    String name;
+    String dbUsername;
 
-    public String getName() {
-        return name;
+    public String getDbUsername() {
+        return dbUsername;
+    }
+
+    public void setDbUsername(String dbUsername) {
+        this.dbUsername = dbUsername;
     }
 
     public Long getId() {
@@ -28,7 +32,7 @@ public class dbUser implements Serializable {
     }
 
     public dbUser(String name) {
-        this.name=name;
+        this.dbUsername=name;
     }
 
     public dbUser() {
